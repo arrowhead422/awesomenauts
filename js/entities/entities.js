@@ -14,10 +14,10 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		}]);
 
 	    this.body.setVelocity(5, 20); // this part sets the locating of the player
-
+	    //this renderable addanimation idle sets the animation went nothing is pressing
 	    this.renderable.addAnimation("idle", [78]);
 	    this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
-
+	    // this renderable addanimation controls the animation walk
 	    this.renderable.setCurrentAnimation("idle");
 	},   
 
@@ -45,7 +45,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 		this.body.update(delta);
 
-		this._super(me.Entity, "update", [delta]);
+		this._super(me.Entity, "update", [delta]);// the code delta runs the animation from your renderable addanimation. 
 		return true;
 
 
