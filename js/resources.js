@@ -4,9 +4,11 @@ game.resources = [
 	 * @example
 	 * {name: "example", type:"image", src: "data/img/example.png"},
 	 */
+	 //the resources display all the images 
     {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},//awesomenauts/data/img...
 	{name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},//awesomenauts/data/img......
 	{name: "player", type:"image", src: "data/img/orcSpear.png"},
+	{name: "tower", type:"image", src: "data/img/tower_round.svg.png"},// tower
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},

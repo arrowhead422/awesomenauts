@@ -54,6 +54,79 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 
 }); 
+	
+	game.PlayerBaseEntity = me.Entity.extend({ // this code here sorts out how does our base play out
+		init: function (x, y, settings){
+			this._super(me.Entity, 'init',[x, y, {
+				image: "tower",
+				width: 100,
+				height: 100,
+				spriteheight: "100",
+				spriteheight: "100",
+				getShape: function(){
+					return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				}
+			}]);
+			this.broken = false;
+			this.health = 10;
+			this.alwaysUpdate = true;
+			this.body.onCollision = this.onCollision.bind(this);
+
+			this.type = "PlayerBaseEntity";		
+		},
+
+		update:function(delta){
+			if (this.health<=0) {
+				this.broken = true;
+			}
+			this.body.update(delta);
+
+			this._super(me.Entity, "update", [delta]);
+			return true;
+		},
+
+		onCollision: function(){
+
+		}
+	});
+// the enemybaseentity are the same player base entity
+	game.EnemyBaseEntity = me.Entity.extend({ // this code here sorts out how does our base play out
+		init: function (x, y, settings){
+			this._super(me.Entity, 'init',[x, y, {
+				image: "tower",
+				width: 100,
+				height: 100,
+				spriteheight: "100",
+				spriteheight: "100",
+				getShape: function(){
+					return (new me.Rect(0, 0, 100, 100)).toPolygon();
+				}
+			}]);
+			this.broken = false;
+			this.health = 10;
+			this.alwaysUpdate = true;
+			this.body.onCollision = this.onCollision.bind(this);
+
+			this.type = "EnemyrBaseEntity";		
+		},
+
+		update:function(delta){
+			if (this.health<=0) {
+				this.broken = true;
+			}
+			this.body.update(delta);
+
+			this._super(me.Entity, "update", [delta]);
+			return true;
+		},
+
+		onCollision: function(){
+
+		}
+	});
+
+
+
 
 
 
