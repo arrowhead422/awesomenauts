@@ -42,8 +42,12 @@ var game = {
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 
 		me.pool.register("player", game.PlayerEntity, true);
+		//we add register entities
+		me.pool.register("PlayerBase", game. PlayerBaseEntity);
+		//the enemy base
+		me.pool.register("EnemyBase", game. EnemyBaseEntity);
 		
-		me.state.set(me.state.MENU, new game.TitleScreen());
+		 me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// Start the game.

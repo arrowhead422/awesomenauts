@@ -71,13 +71,17 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			this.health = 10;
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
-
+			console.log("init");
+			this.renderable.addAnimation("idle", [0]);
+			this.renderable.addAnimation("broken", [1]);
+			this.renderable.setCurrentAnimation("idle");
 			this.type = "PlayerBaseEntity";		
 		},
 
 		update:function(delta){
 			if (this.health<=0) {
 				this.broken = true;
+				this.renderable.setCurrentAnimation("broken");
 			}
 			this.body.update(delta);
 
@@ -107,7 +111,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 
-			this.type = "EnemyrBaseEntity";		
+			this.type = "EnemyBaseEntity";		
 		},
 
 		update:function(delta){
