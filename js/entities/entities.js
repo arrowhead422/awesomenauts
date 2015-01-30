@@ -72,10 +72,12 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 			console.log("init");
-			this.renderable.addAnimation("idle", [0]);
+			this.type = "PlayerBaseEntity";		
+			
+			this.renderable.addAnimation("idle", [0]); // line 77 to 79 help to display the player tower
 			this.renderable.addAnimation("broken", [1]);
 			this.renderable.setCurrentAnimation("idle");
-			this.type = "PlayerBaseEntity";		
+
 		},
 
 		update:function(delta){
@@ -112,11 +114,18 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			this.body.onCollision = this.onCollision.bind(this);
 
 			this.type = "EnemyBaseEntity";		
+
+
+			this.renderable.addAnimation("idle", [0]); // line 119 to 121 controls or display the image of enemys base
+			this.renderable.addAnimation("broken", [1]);
+			this.renderable.setCurrentAnimation("idle");
 		},
 
 		update:function(delta){
 			if (this.health<=0) {
 				this.broken = true;
+				this.renderable.setCurrentAnimation("broken");
+				
 			}
 			this.body.update(delta);
 
