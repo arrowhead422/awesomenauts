@@ -15,6 +15,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	   
 	    this.body.setVelocity(5, 20); // this part sets the locating of the player
+	    this.facing = "right";//keeps track of which direction your character is going
 	   	me.game.viewport.follow(this.pos, me.game.viewport. AXIS.BOTH);
 	    //this renderable addanimation idle sets the animation went nothing is pressing
 	    this.renderable.addAnimation("idle", [78]);
@@ -30,12 +31,27 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			//seVelocity() and multiplying itby me.timer.tick.
 			//me.timer.tick makes the movement look smoot
 			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.facing = "right";
 			
 			this.flipX(true);
+		}else if(me.input.isKeyPressed("left")){
+			this.facing = "left";
+			this.body.vel.x -=this.body.accel.x * me.timer.tick;
+			this.flipX(false);
+
 		}
 		else{
 			this.body.vel.x = 0;
 		}
+
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.falling){
+			this.body.jumping = true;
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
+
+		}
+
+
+
 
 		if(me.input.isKeyPressed("attack")){
 			
@@ -51,7 +67,6 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 			}
 		}
-
 
 
 
@@ -80,14 +95,30 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		}
 
 
-
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 
 		this._super(me.Entity, "update", [delta]);// the code delta runs the animation from your renderable addanimation. 
 		return true;
 
 
-	}
+	},
+
+	collideHandler: function(resonse){
+		if (response.b.type==='EnemyBaseEntity') {
+			var ydif = this.pos.y = response.b.pos.y;
+			var xdif = this.pos.x = response.b.pos.x;
+
+			console.log("xdif" + xdif + "ydif" + ydif);
+
+			//if(){
+			//	this.body.vel.x = 0;
+			//	this.pos.x = this.pos.x -1;
+			}
+			
+		}
+		
+	
 
 
 
@@ -102,7 +133,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				spriteheight: "100",
 				spriteheight: "100",
 				getShape: function(){
-					return (new me.Rect(0, 0, 100, 100)).toPolygon();
+					return (new me.Rect(0, 0, 100, 70)).toPolygon();
 				}
 			}]);
 			this.broken = false;
@@ -133,6 +164,9 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 		}
 	});
+
+
+
 // the enemybaseentity are the same player base entity
 	game.EnemyBaseEntity = me.Entity.extend({ // this code here sorts out how does our base play out
 		init: function (x, y, settings){

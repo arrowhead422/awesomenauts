@@ -13,6 +13,8 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		me.input.bindKey (me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.S, "attack");
+		me.input.bindKey(me.input.KEY.LEFT, "left");
+		me.input.bindKey(me.input.KEY.SPACE, "jump");
 
 
 		
