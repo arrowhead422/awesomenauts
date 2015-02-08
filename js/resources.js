@@ -8,7 +8,9 @@ game.resources = [
     {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},//awesomenauts/data/img...
 	{name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},//awesomenauts/data/img......
 	{name: "player", type:"image", src: "data/img/orcSpear.png"},
+	{name: "archer", type:"image", src: "data/img/archer.png"},
 	{name: "tower", type:"image", src: "data/img/tower_round.svg.png"},// tower
+	{name: "red", type:"image", src: "data/img/red.jpg"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
@@ -25,10 +27,12 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
+	    {name: "one", type: "audio", src: "data/music/"},
 	 	
 
 	/* Sound effects. 
 	 * @example
 	 * {name: "example_sfx", type: "audio", src: "data/sfx/"}
-	 */
+		*/
+		//{name: "jump",  type: "audio", src: "data/sfx/"},
 ];
