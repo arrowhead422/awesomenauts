@@ -14,7 +14,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		}]);
 
 	   
-	    this.body.setVelocity(5, 20); // this part sets the locating of the player
+	    this.body.setVelocity(5, 20); // this part sets the speed of the player
 	    this.facing = "right";//keeps track of which direction your character is going
 	   	me.game.viewport.follow(this.pos, me.game.viewport. AXIS.BOTH);
 	    //this renderable addanimation idle sets the animation went nothing is pressing
@@ -79,20 +79,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		this.renderable.setCurrentAnimation("idle");
 	}
 
-	if(me.input.isKeyPressed("attack")){
-			
-			if(!this.renderable.isCurrentAnimation("attack")){
-				console.log();
-				// sets the current animation to attack and once that is over
-				//goes back to the idle animation
-				this.renderable.setCurrentAnimation("attack", "idle");
-				//makes it so that the next timme we start this sequence we begin
-				//from the first animation, not wherever we left off when we
-				//switched to tanother animation
-				this.renderable.setAnimationFrame();
-
-			}
-		}
+	
 
 
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
@@ -111,7 +98,14 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 			console.log("xdif" + xdif + "ydif" + ydif);
 
-			if(xdif>-35 && this.facing==='right' && (xdif<0)){ // when player collide with enemybase it will stop the player from the right side
+
+
+			if (ydif<-40 && xdif< 70 && xdif>-35) {// player collide with the top of the base
+				this.body.falling = false;
+				this.body.vel.y = -1;
+			}
+
+			else if(xdif>-35 && this.facing==='right' && (xdif<0)){ // when player collide with enemybase it will stop the player from the right side
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x -1;
 			}else if (xdif<70 && this.facing==='left' && (xdif>0)) {// the left side
