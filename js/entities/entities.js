@@ -106,18 +106,22 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	collideHandler: function(response){
 		if (response.b.type==='EnemyBaseEntity') {
-			var ydif = this.pos.y = response.b.pos.y;
-			var xdif = this.pos.x = response.b.pos.x;
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
 
 			console.log("xdif" + xdif + "ydif" + ydif);
 
-			if(xdif){
+			if(xdif>-35 && this.facing==='right' && (xdif<0)){ // when player collide with enemybase it will stop the player from the right side
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x -1;
+			}else if (xdif<70 && this.facing==='left' && (xdif>0)) {// the left side
+				this.body.vel.x = 0;
+				this.pos.x = this.pos.x +1;
+
 			}
-			}
-			
 		}
+			
+	}
 		
 	
 
