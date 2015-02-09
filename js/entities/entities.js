@@ -16,6 +16,9 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 	   
 	    this.body.setVelocity(5, 20); // this part sets the speed of the player
 	    this.facing = "right";//keeps track of which direction your character is going
+	   	this.now = new Date().getTime();// it keep track of time
+	   	this.lastHit = this.now;
+	   	this.lastAttack = new Date().getTime();
 	   	me.game.viewport.follow(this.pos, me.game.viewport. AXIS.BOTH);
 	    //this renderable addanimation idle sets the animation went nothing is pressing
 	    this.renderable.addAnimation("idle", [78]);
@@ -26,6 +29,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 	},   
 
 	update: function (delta){
+		this.now = new Date().getTime();
 		if(me.input.isKeyPressed("right")){
 			//sets the position of my x by adding the velocity defined above in.
 			//seVelocity() and multiplying itby me.timer.tick.
@@ -70,12 +74,12 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 
 
-		else if(this.body.vel.x !== 0){
+		else if(this.body.vel.x !== 0 && !this.renderable.isCurrentAnimation("attack")){
 
 		if(!this.renderable.isCurrentAnimation("walk")){
 			this.renderable.setCurrentAnimation("walk");
 		}
-	}else{
+	}else if(!this.renderable.isCurrentAnimation("attack")){
 		this.renderable.setCurrentAnimation("idle");
 	}
 
@@ -112,6 +116,11 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				this.body.vel.x = 0;
 				this.pos.x = this.pos.x +1;
 
+			}
+
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >=400){
+				this.lastHit = this.now;
+				response.b.loseHealth();
 			}
 		}
 			
@@ -206,6 +215,10 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 		onCollision: function(){
 
+		},
+
+		loseHealth: function(){
+			this.health--;
 		}
 	});
 
