@@ -243,7 +243,7 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 
 		this.type = "EnemyCreep";
 
-		this.renderable.addAnimation("walk," [3, 4, 5], 80);
+		this.renderable.addAnimation("walk", [3, 4, 5], 80);
 		this.renderable.setCurrentAnimation("walk");
 
 	},
@@ -256,7 +256,7 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 
 
 
-game.GameManager = Object.extend({ // is a object not a entities
+game.GameManger = Object.extend({ // is a object not a entities
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastCreep = new Date().getTime();
