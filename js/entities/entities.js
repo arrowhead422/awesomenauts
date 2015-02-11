@@ -248,10 +248,16 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 
 	},
 
-	update: function(){
+	update: function(delta){ //update the enemey creep
 
-	}
 
+		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+
+     	this.body.update(delta);
+
+		this._super(me.Entity, "update", [delta]);// the code delta runs the animation from your renderable addanimation. 
+		return true;
+}
 });
 
 
