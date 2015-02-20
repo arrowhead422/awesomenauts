@@ -12,13 +12,14 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 				}
 		}]);
-
+		//from video 24 all the game.date info are all stored in the game.entities.
 	   	this.type= "PlayerEntity";
-	   	this.health = 20;
-	    this.body.setVelocity(5, 20); // this part sets the speed of the player
+	   	this.health = game.data.PlayerHealth;// player's health are stored in the game; date
+	    this.body.setVelocity(game.data.PlayerMoveSpeed, 20); // this part sets the speed of the player
 	    this.facing = "right";//keeps track of which direction your character is going
 	   	this.now = new Date().getTime();// it keep track of time
 	   	this.lastHit = this.now;
+	   	this.dead = false;
 	   	this.lastAttack = new Date().getTime();
 	   	me.game.viewport.follow(this.pos, me.game.viewport. AXIS.BOTH);
 	    //this renderable addanimation idle sets the animation went nothing is pressing
@@ -31,6 +32,15 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	update: function (delta){
 		this.now = new Date().getTime();
+
+		if (this.health <= 0) {
+			this.dead = true;
+			this.pos.x = 10;
+			this.pos.y = 0;
+			this.health = game.data.PlayerHealth;
+		}
+
+
 		if(me.input.isKeyPressed("right")){
 			//sets the position of my x by adding the velocity defined above in.
 			//seVelocity() and multiplying itby me.timer.tick.
@@ -130,10 +140,10 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 			}
 
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.PlayerAttackTimer){
 				console.log("tower Hit");
 				this.lastHit = this.now;
-				response.b.loseHealth();
+				response.b.loseHealth(game.data.PlayerAttack);
 			}
 		}
 		else if (response.b.type==='EnemyCreep') {
@@ -151,12 +161,12 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 					this.body.vel.x = 0;
 			}
 }
-			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000
+			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.PlayerAttackTimer
 				&& (Math.abs(ydif) <=40) && 
 				(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 				){
 				this.lastHit = this.now;
-				response.b.loseHealth(1);
+				response.b.loseHealth(game.data.PlayerAttack);
 			}
 		}
 			
@@ -181,7 +191,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				}
 			}]);
 			this.broken = false;
-			this.health = 10;
+			this.health = game.data.PlayerBaseHealth;
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 			this.type = "PlayerBase";		
@@ -229,7 +239,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				}
 			}]);
 			this.broken = false;
-			this.health = 10;
+			this.health = game.data.EnemyBaseHealth;
 			this.alwaysUpdate = true;
 			this.body.onCollision = this.onCollision.bind(this);
 
@@ -275,7 +285,7 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 			}
 					// is almost the same function as enemy base entities
 		}]);
-		this.health = 10;
+		this.health = game.data.EnemyCreepHealth;
 		this.alwaysUpdate = true;
 		//this.attack lets us know if the enemy is currently attacking
 		this.attacking = false;
@@ -330,7 +340,7 @@ collideHandler: function(response){
 		if ((this.now-this.lastHit >= 1000)){
 			this.lastHit = this.now;
 
-			response.b.loseHealth(1);
+			response.b.loseHealth(game.data.EnemycreepAttack);
 		}
 	}else if (response.b.type==='PlayerEntity') {
 		var xdif = this.pos.x - response.b.pos.x;
@@ -350,7 +360,7 @@ collideHandler: function(response){
 
 			this.lastHit = this.now;
 
-			response.b.loseHealth(1);
+			response.b.loseHealth(game.data.EnemycreepAttack);
 		}
 	}
 }
