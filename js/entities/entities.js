@@ -35,9 +35,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 		if (this.health <= 0) {
 			this.dead = true;
-			this.pos.x = 10;
-			this.pos.y = 0;
-			this.health = game.data.PlayerHealth;
+			
 		}
 
 
@@ -112,8 +110,8 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	},
 
-	loseHealth: function(damage) {
-		this.health = this.health - damage;
+	loseHealth: function(damage){
+			this.health = this.health - damage;
 		console.log(this.health);
 	},
 
@@ -133,10 +131,10 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 			else if(xdif>-35 && this.facing==='right' && (xdif<0)){ // when player collide with enemybase it will stop the player from the right side
 				this.body.vel.x = 0;
-				this.pos.x = this.pos.x -1;
+				//this.pos.x = this.pos.x -1;
 			}else if (xdif<70 && this.facing==='left' && xdif>0) {// the left side
 				this.body.vel.x = 0;
-				this.pos.x = this.pos.x +1;
+				//this.pos.x = this.pos.x +1;
 
 			}
 
@@ -151,12 +149,12 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			var ydif = this.pos.y - response.b.pos.y;
 
 			if(xdif>0){
-				this.pos.x = this.pos.x + 1;
+				//this.pos.x = this.pos.x + 1;
 				if (this.facing==="left") {
 					this.body.vel.x = 0;
 				}
 			}else{
-				this.pos.x = this.pos.x - 1;
+				//this.pos.x = this.pos.x - 1;
 				if (this.facing==="right") {
 					this.body.vel.x = 0;
 			}
@@ -309,7 +307,6 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 
 	update: function(delta){ //update the enemey creep
 		console.log(this.health);
-		
 		if (this.health <=0) {
 			me.game.world.removeChild(this);
 		}
@@ -340,7 +337,7 @@ collideHandler: function(response){
 		if ((this.now-this.lastHit >= 1000)){
 			this.lastHit = this.now;
 
-			response.b.loseHealth(game.data.EnemycreepAttack);
+			response.b.loseHealth(game.data.EnemyCreepAttack);
 		}
 	}else if (response.b.type==='PlayerEntity') {
 		var xdif = this.pos.x - response.b.pos.x;
@@ -360,7 +357,7 @@ collideHandler: function(response){
 
 			this.lastHit = this.now;
 
-			response.b.loseHealth(game.data.EnemycreepAttack);
+			response.b.loseHealth(game.data.EnemyCreepAttack);
 		}
 	}
 }
@@ -379,6 +376,11 @@ game.GameManger = Object.extend({ // is a object not a entities
 
 	update: function(){
 		this.now = new Date().getTime();
+
+		if (game.data.Player.dead) {
+			me.game.world.removeChild(game.data.Player);
+			me.state.current().resetPlayer(10, 0);
+		}
 
 		if (Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)) { // % this is a mod it checks if we have mutiple 10 ?????
 			this.lastCreep = this.now;

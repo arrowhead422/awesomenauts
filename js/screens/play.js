@@ -9,9 +9,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		me.levelDirector.loadLevel("level01"); // this code here loads up our tile set up.
 
-		var player = me.pool.pull("player" , 0, 420, {});
-		me.game.world.addChild(player, 5);
-
+		this.resetPlayer(0, 420);
 		var gamemanager = me.pool.pull("GameManger", 0, 0, {});
 		me.game.world.addChild(gamemanager, 0);
 
@@ -35,6 +33,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.audio.stopTrack();
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
+	},
+
+	resetPlayer: function(x, y){
+		game.data.Player = me.pool.pull("Player" , x, y, {});
+		me.game.world.addChild(game.data.Player, 5);
+
 	}
 });
  
