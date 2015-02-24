@@ -20,6 +20,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 	   	this.now = new Date().getTime();// it keep track of time
 	   	this.lastHit = this.now;
 	   	this.dead = false;
+	   	this.attack = game.data.PlayerAttack;
 	   	this.lastAttack = new Date().getTime();
 	   	me.game.viewport.follow(this.pos, me.game.viewport. AXIS.BOTH);
 	    //this renderable addanimation idle sets the animation went nothing is pressing
@@ -75,7 +76,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		if(me.input.isKeyPressed("attack")){
 			
 			if(!this.renderable.isCurrentAnimation("attack")){
-				console.log();
+				
 				// sets the current animation to attack and once that is over
 				//goes back to the idle animation
 				this.renderable.setCurrentAnimation("attack", "idle");
@@ -112,7 +113,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	loseHealth: function(damage){
 			this.health = this.health - damage;
-		console.log(this.health);
+		
 	},
 
 	collideHandler: function(response){
@@ -139,7 +140,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 			}
 
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.PlayerAttackTimer){
-				console.log("tower Hit");
+			
 				this.lastHit = this.now;
 				response.b.loseHealth(game.data.PlayerAttack);
 			}
@@ -164,6 +165,13 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				(((xdif>0) && this.facing==="left") || ((xdif<0) && this.facing==="right"))
 				){
 				this.lastHit = this.now;
+					//if the creeps health is less than our attack, execute code in if statement
+				if (response.b.health <= game.data.PlayerAttack) {
+					//adds one gold for a creep kill
+					game.data.gold += 1;
+					console.log("current gold" + game.data.gold);
+				}
+
 				response.b.loseHealth(game.data.PlayerAttack);
 			}
 		}
@@ -306,7 +314,7 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 	},
 
 	update: function(delta){ //update the enemey creep
-		console.log(this.health);
+	
 		if (this.health <=0) {
 			me.game.world.removeChild(this);
 		}
@@ -314,6 +322,8 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 		this.now = new Date().getTime();
 
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
+
+		this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
 
 		me.collision.check(this,true, this.collideHandler.bind(this), true);
 
@@ -369,7 +379,7 @@ game.GameManger = Object.extend({ // is a object not a entities
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastCreep = new Date().getTime();
-
+		this.paused = false;
 		this.alwaysUpdate = true;
 
 	},
@@ -381,6 +391,12 @@ game.GameManger = Object.extend({ // is a object not a entities
 			me.game.world.removeChild(game.data.Player);
 			me.state.current().resetPlayer(10, 0);
 		}
+
+		if (Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)) { // % this is a mod it checks if we have mutiple 10 ?????
+			game.data.gold += 1;
+			console.log("current gold: " + game.data.gold);	
+	}
+
 
 		if (Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)) { // % this is a mod it checks if we have mutiple 10 ?????
 			this.lastCreep = this.now;
