@@ -169,7 +169,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 				if (response.b.health <= game.data.PlayerAttack) {
 					//adds one gold for a creep kill
 					game.data.gold += 1;
-					console.log("current gold" + game.data.gold);
+					console.log("Current gold" + game.data.gold);
 				}
 
 				response.b.loseHealth(game.data.PlayerAttack);
@@ -314,7 +314,6 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 	},
 
 	update: function(delta){ //update the enemey creep
-	
 		if (this.health <=0) {
 			me.game.world.removeChild(this);
 		}
@@ -323,7 +322,6 @@ game.EnemyCreep = me.Entity.extend({ // enemy team creep
 
 		this.body.vel.x -= this.body.accel.x * me.timer.tick;
 
-		this.body.vel.y = -this.body.maxVel.y * me.timer.tick;
 
 		me.collision.check(this,true, this.collideHandler.bind(this), true);
 
@@ -394,7 +392,7 @@ game.GameManger = Object.extend({ // is a object not a entities
 
 		if (Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)) { // % this is a mod it checks if we have mutiple 10 ?????
 			game.data.gold += 1;
-			console.log("current gold: " + game.data.gold);	
+			console.log("Current gold: " + game.data.gold);	
 	}
 
 
