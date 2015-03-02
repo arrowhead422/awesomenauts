@@ -14,7 +14,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 
 	    this.renderable.setCurrentAnimation("idle");
 	},   
-	setSuper: function(){
+	setSuper: function(x, y){
 		this._super(me.Entity, 'init', [x, y,{
 			image: "player",
 			width: 64,
@@ -51,7 +51,7 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 	},
 	update: function (delta){
 		this.now = new Date().getTime();
-		this.dead = checkIfDead();
+		this.dead = this.checkIfDead();
 		this.checkKeyPressesAndMove();
 		this.setAnimation();
 
