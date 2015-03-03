@@ -10,8 +10,12 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.levelDirector.loadLevel("level01"); // this code here loads up our tile set up.
 
 		this.resetPlayer(0, 420);
-		var gamemanager = me.pool.pull("GameManger", 0, 0, {});
-		me.game.world.addChild(gamemanager, 0);
+		var GameTimerManager = me.pool.pull("GameTimerManger", 0, 0, {});
+		me.game.world.addChild(GameTimeranager, 0);
+
+		var HeroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
+		me.game.world.addChild(HeroDeathManager, 0);
+
 
 		me.input.bindKey (me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.S, "attack");
