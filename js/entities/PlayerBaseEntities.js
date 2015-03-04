@@ -25,6 +25,7 @@ game.PlayerBaseEntity = me.Entity.extend({ // this code here sorts out how does 
 		update:function(delta){
 			if (this.health<=0) {
 				this.broken = true;
+				game.data.Win = false;
 				this.renderable.setCurrentAnimation("broken");
 			}
 			this.body.update(delta);

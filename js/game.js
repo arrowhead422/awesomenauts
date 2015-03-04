@@ -28,7 +28,8 @@ var game = {
 		expl: 0,
 		exp2: 0,
 		exp3: 0,
-		exp4: 0
+		exp4: 0,
+		Win: ""
 	},
 	
 	
@@ -72,6 +73,7 @@ var game = {
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		me.pool.register("GameManger", game.GameTimerManger);
 		me.pool.register.("HeroDeathManager", game.HeroDeathManager);
+		me.pool.register.("ExperienceManager", game.ExperienceManager);
 
 		
 		 me.state.set(me.state.MENU, new game.TitleScreen());

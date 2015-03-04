@@ -27,6 +27,7 @@
 		update:function(delta){
 			if (this.health<=0) {
 				this.broken = true;
+				game.data.Win = true;
 				this.renderable.setCurrentAnimation("broken");
 
 			}
