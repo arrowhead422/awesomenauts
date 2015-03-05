@@ -11,12 +11,12 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		this.resetPlayer(0, 420);
 		var GameTimerManager = me.pool.pull("GameTimerManger", 0, 0, {});
-		me.game.world.addChild(GameTimeranager, 0);
+		me.game.world.addChild(GameTimerManager, 0);
 
 		var HeroDeathManager = me.pool.pull("HeroDeathManager", 0, 0, {});
 		me.game.world.addChild(HeroDeathManager, 0);
 
-		var HeroDeathManager = me.pool.pull("ExperienceManager", 0, 0, {});
+		var ExperienceManager = me.pool.pull("ExperienceManager", 0, 0, {});
 		me.game.world.addChild(ExperienceManager, 0);
 
 

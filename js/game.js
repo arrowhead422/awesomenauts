@@ -22,6 +22,7 @@ var game = {
 		CreepMoveSpeed: 5,
 		GameTimerManger: "",
 		HeroDeathManager: "",
+		ExperienceManager: "",
 		Player: "",
 		exp: 0,
 		gold: 0,
@@ -29,7 +30,7 @@ var game = {
 		exp2: 0,
 		exp3: 0,
 		exp4: 0,
-		Win: ""
+		win: ""
 	},
 	
 	
@@ -71,9 +72,9 @@ var game = {
 		//the enemy base
 		me.pool.register("EnemyBase", game. EnemyBaseEntity);
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-		me.pool.register("GameManger", game.GameTimerManger);
-		me.pool.register.("HeroDeathManager", game.HeroDeathManager);
-		me.pool.register.("ExperienceManager", game.ExperienceManager);
+		me.pool.register("GameTimerManger", game.GameTimerManger);
+		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		me.pool.register("ExperienceManager", game.ExperienceManager);
 
 		
 		 me.state.set(me.state.MENU, new game.TitleScreen());
