@@ -9,7 +9,7 @@ var game = {
 		EnemyBaseHealth: 10,
 		PlayerBaseHealth: 10,
 		EnemyCreepHealth: 10,
-		PlayerHealth: 10,
+		PlayerHealth: 100,
 		EnemyCreepAttack: 1,
 		PlayerAttack: 1,
 		//OrcBaseDamage: 10,
@@ -77,7 +77,7 @@ var game = {
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 
 		
-		 me.state.set(me.state.MENU, new game.TitleScreen());
+		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// Start the game.
