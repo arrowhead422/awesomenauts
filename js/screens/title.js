@@ -34,6 +34,31 @@ game.TitleScreen = me.ScreenObject.extend({
 
  		})));
 
+ 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title')), -10);		 
+
+ 		me.game.world.addChild(new (me.Renderable.extend ({ // % this game world controls the meau
+ 			init: function(){
+ 				this._super(me.Renderable, "init", [380, 340,250,50]);
+ 				this.font = new me.Font("Arial", 46, "white");
+ 				me.input.registerPointerEvent('pointerdown',this, this.newGame.bind(this), true);
+ 			},
+
+ 			draw: function(rendrer){
+				this.font.draw(rendrer.getContext(), "Continue",this.pos.x,this.pos.y);
+				
+			},
+
+			update: function(dt){
+				return true;
+			},
+	
+			newGame: function(){
+				me.input.releasePointerEvent("pointerdown", this);
+				me.state.change(me.state.PLAY);
+			}
+
+ 		})));
+
 	},
 
 
