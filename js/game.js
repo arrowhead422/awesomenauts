@@ -6,8 +6,8 @@ var game = {
 	data : {
 		// score
 		score : 0, 
-		EnemyBaseHealth: 10,
-		PlayerBaseHealth: 10,
+		EnemyBaseHealth: 1,
+		PlayerBaseHealth: 1,
 		EnemyCreepHealth: 10,
 		PlayerHealth: 100,
 		EnemyCreepAttack: 1,
@@ -48,6 +48,9 @@ var game = {
 			me.plugin.register.defer(this, debugPanel, "debug");
 		});
 	}
+
+	
+
 
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
