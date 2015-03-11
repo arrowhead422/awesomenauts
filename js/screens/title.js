@@ -13,8 +13,8 @@ game.TitleScreen = me.ScreenObject.extend({
  				me.input.registerPointerEvent('pointerdown',this, this.newGame.bind(this), true);
  			},
 
- 			draw: function(rendrer){
-				this.font.draw(rendrer.getContext(), "START A NEW GAME",this.pos.x,this.pos.y);
+ 			draw: function(renderer){
+				this.font.draw(renderer.getContext(), "START A NEW GAME",this.pos.x,this.pos.y);
 				
 			},
 
@@ -43,8 +43,8 @@ game.TitleScreen = me.ScreenObject.extend({
  				me.input.registerPointerEvent('pointerdown',this, this.newGame.bind(this), true);
  			},
 
- 			draw: function(rendrer){
-				this.font.draw(rendrer.getContext(), "Continue",this.pos.x,this.pos.y);
+ 			draw: function(renderer){
+				this.font.draw(renderer.getContext(), "Continue",this.pos.x,this.pos.y);
 				
 			},
 
@@ -59,7 +59,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				game.data.exp3 = me.save.exp3;
 				game.data.exp4 = me.save.exp4;
 				me.input.releasePointerEvent("pointerdown", this);
-				me.state.change(me.state.PLAY);
+				me.state.change(me.state.SPENDEXP);
 			}
 
  		})));

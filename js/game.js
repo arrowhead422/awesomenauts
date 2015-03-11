@@ -49,7 +49,8 @@ var game = {
 		});
 	}
 
-	
+	me.save.add({exp: 0, epx1: 0, exp2: 0, exp3: 0, exp4: 0});
+	me.state.SPENDEXP = 112;	
 
 
 	// Initialize the audio.
@@ -67,7 +68,7 @@ var game = {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
-		me.input.bindKey(me.input.KEY.RIGHT, "right");
+
 
 		me.pool.register("player", game.PlayerEntity, true);
 		//we add register entities
@@ -81,7 +82,9 @@ var game = {
 
 		
 		me.state.set(me.state.MENU, new game.TitleScreen());
+		//menu and play repersented as number for my game
 		me.state.set(me.state.PLAY, new game.PlayScreen());
+		me.state.set(me.state.SPENDEXP, new game.SpendExp());
 
 		// Start the game.
 		me.state.change(me.state.MENU);

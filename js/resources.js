@@ -11,7 +11,8 @@ game.resources = [
 	{name: "archer", type:"image", src: "data/img/archer.png"},
 	{name: "tower", type:"image", src: "data/img/tower_round.svg.png"},// tower
 	{name: "creep1", type:"image", src: "data/img/brainmonster.png"},
-	{name: "title", type:"image", src: "data/img/title.png"},
+	{name: "title-screen", type:"image", src: "data/img/title.png"},
+	{name: "exp-screen", type:"image", src: "data/img/loadpic.png"},
 	/* Atlases 
 	 * @example
 	 * {name: "example_tps", type: "tps", src: "data/img/example_tps.json"},
@@ -28,7 +29,7 @@ game.resources = [
 	 * @example
 	 * {name: "example_bgm", type: "audio", src: "data/bgm/"},
 	 */	
-	    {name: "one", type: "audio", src: "data/music/"},
+	    {name: "one", type: "audio", src: "data/music/"}
 	 	
 
 	/* Sound effects. 
