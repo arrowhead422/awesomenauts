@@ -4,7 +4,7 @@ game.TitleScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {	
 
-		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title')), -10);		 
+		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10);		 
 
  		me.game.world.addChild(new (me.Renderable.extend ({ // % this game world controls the meau
  			init: function(){
@@ -34,7 +34,6 @@ game.TitleScreen = me.ScreenObject.extend({
 
  		})));
 
- 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title')), -10);		 
 
  		me.game.world.addChild(new (me.Renderable.extend ({ // % this game world controls the meau
  			init: function(){
