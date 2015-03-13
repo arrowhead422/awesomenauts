@@ -26,7 +26,7 @@ var game = {
 		Player: "",
 		exp: 0,
 		gold: 0,
-		expl: 0,
+		expl: 10,
 		exp2: 0,
 		exp3: 0,
 		exp4: 0,
