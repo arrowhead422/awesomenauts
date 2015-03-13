@@ -17,7 +17,7 @@ game.GameTimerManger = Object.extend({ // is a object not a entities
 	},
 	GoldTimerCheck: function(){
 			if (Math.round(this.now/1000)%20 ===0 && (this.now - this.lastCreep >= 1000)) { // % this is a mod it checks if we have mutiple 10 ?????
-			game.data.gold += 1;
+			game.data.gold += (game.data.exp+1);
 			console.log("Current gold: " + game.data.gold);	
 		}
 
