@@ -4,12 +4,13 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		me.audio.playTrack("one");
+		
 		// reset the score
 		game.data.score = 0;
 
 		me.levelDirector.loadLevel("level01"); // this code here loads up our tile set up.
-
 		this.resetPlayer(0, 420);
+		
 		var GameTimerManager = me.pool.pull("GameTimerManger", 0, 0, {});
 		me.game.world.addChild(GameTimerManager, 0);
 
@@ -21,12 +22,13 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		var SpendGold = me.pool.pull("SpendGold", 0, 0, {});
 		me.game.world.addChild(SpendGold, 0);
-		
-		me.input.bindKey (me.input.KEY.B, "buy");
-		me.input.bindKey (me.input.KEY.Q, "skill");
-		me.input.bindKey (me.input.KEY.W, "skill2");
-		me.input.bindKey (me.input.KEY.E, "skill3");
+
+		me.input.bindKey(me.input.KEY.B, "buy");
+		me.input.bindKey(me.input.KEY.Q, "skill");
+		me.input.bindKey(me.input.KEY.W, "skill2");
+		me.input.bindKey(me.input.KEY.T, "skill3");
 		me.input.bindKey(me.input.KEY.S, "attack");
+		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.LEFT, "left");
 		me.input.bindKey(me.input.KEY.SPACE, "jump");
 
@@ -45,6 +47,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.audio.stopTrack();
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
+		me.game.world.removeChild(this.GameTimerManager);
 	},
 
 	resetPlayer: function(x, y){

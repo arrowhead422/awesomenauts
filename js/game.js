@@ -20,7 +20,7 @@ var game = {
 		EnemyCreepAttackTimer: 1000,
 		PlayerMoveSpeed: 5,
 		CreepMoveSpeed: 5,
-		GameTimerManger: "",
+		GameTimerManager: "",
 		HeroDeathManager: "",
 		ExperienceManager: "",
 		Player: "",

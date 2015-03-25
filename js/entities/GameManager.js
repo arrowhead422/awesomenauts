@@ -82,7 +82,7 @@ game.SpendGold = Object.extend({
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastBuy = new Date().getTime();
-		this.paused = false;
+		this.pause = false;
 		this.alwaysUpdate = true;
 		this.updateWhenPasued= true;
 		this.buying = false;
@@ -90,6 +90,8 @@ game.SpendGold = Object.extend({
 	},
 
 	update: function(){
+		this.now = new Date().getTime();
+
 		if(me.input.isKeyPressed("buy") && this.now-this.lastBuy >=1000){
 			this.lastBuy = this.now;
 			if(!this.buying){
@@ -102,12 +104,12 @@ game.SpendGold = Object.extend({
 		return true;
 	}, 
 
-	startBuying: function(){
+	startBuying: function(){ // allows me to pause the game and go right into the startbuying
 		this.buying = true;
-		me.state.paused(me.state.PLAY);
-		game.data.pausedPos = me.game.viewport.localToWorld(0, 0);
-		game.data.buyscreen = new me.Sprite(game.data.pausedPos.x, game.data.pausedPos.y, me.loader.getImage('gold-screen'));
-		game.data.buyscreen.updateWhenPasued = true;
+		me.state.pause(me.state.PLAY);
+		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
+		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
+		game.data.buyscreen.updateWhenPaused = true;
 		game.data.buyscreen.setOpacity(0.8);
 		me.game.world.addChild(game.data.buyscreen, 34);
 		game.data.Player.body.setVelocity(0, 0);
@@ -116,7 +118,7 @@ game.SpendGold = Object.extend({
 	stopBuying: function(){
 		this.buying = false;
 		me.state.resume(me.state.PLAY);
-		game.data.Player.body.setVelocity(game.data.playerMoveSpeed, 20);
+		game.data.Player.body.setVelocity(game.data.PlayerMoveSpeed, 5);
 		me.game.world.removeChild(game.data.buyscreen);
 	}
 
