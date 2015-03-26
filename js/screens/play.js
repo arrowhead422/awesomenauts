@@ -4,7 +4,6 @@ game.PlayScreen = me.ScreenObject.extend({
 	 */
 	onResetEvent: function() {
 		me.audio.playTrack("one");
-		
 		// reset the score
 		game.data.score = 0;
 
@@ -47,7 +46,7 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.audio.stopTrack();
 		// remove the HUD from the game world
 		me.game.world.removeChild(this.HUD);
-		me.game.world.removeChild(this.GameTimerManager);
+	
 	},
 
 	resetPlayer: function(x, y){

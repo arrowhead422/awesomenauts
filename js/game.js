@@ -19,6 +19,7 @@ var game = {
 		PlayerAttackTimer: 1000,
 		EnemyCreepAttackTimer: 1000,
 		PlayerMoveSpeed: 5,
+		//PlyaerJumpSpeed: 10, 
 		CreepMoveSpeed: 5,
 		GameTimerManager: "",
 		HeroDeathManager: "",
@@ -32,7 +33,10 @@ var game = {
 		exp4: 0,
 		win: "",
 		pausePos: "",
-		buyscreen: ""
+		buyscreen: "",
+		buytext: "",
+		Music: "",
+		Creep: "",
 	},
 	
 	
