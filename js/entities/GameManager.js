@@ -108,9 +108,9 @@ game.SpendGold = Object.extend({
 		this.buying = true;
 		me.state.pause(me.state.PLAY);
 		game.data.pausePos = me.game.viewport.localToWorld(0, 0);
-		game.data.Music = me.audio.stopTrack("one");
 		game.data.buyscreen = new me.Sprite(game.data.pausePos.x, game.data.pausePos.y, me.loader.getImage('gold-screen'));
 		game.data.buyscreen.updateWhenPaused = true;
+		game.data.Music = me.audio.stopTrack();
 		game.data.buyscreen.setOpacity(0.8);
 		me.game.world.addChild(game.data.buyscreen, 34);
 		game.data.Player.body.setVelocity(0, 0);
@@ -146,6 +146,7 @@ game.SpendGold = Object.extend({
 		me.state.resume(me.state.PLAY);
 		game.data.Player.body.setVelocity(game.data.PlayerMoveSpeed, 22);
 		me.game.world.removeChild(game.data.buyscreen);
+		game.data.Music = me.audio.playTrack("one");
 		me.input.unbindKey(me.input.KEY.F1, "F1", true);
 		me.input.unbindKey(me.input.KEY.F2, "F2", true);
 		me.input.unbindKey(me.input.KEY.F3, "F3", true);
