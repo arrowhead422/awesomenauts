@@ -134,7 +134,13 @@ game.SpendGold = Object.extend({
  				},
 
  				draw: function(renderer){
-					this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B to EXIT", this.pos.x, this.pos.y);
+					this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B to EXIT. Current gold:" + game.data.gold, this.pos.x, this.pos.y);
+					this.font.draw(renderer.getContext(), "Skill 1: Increase Damage. Current Level: " + game.data.skill1 + "Cost:" + ((game.data.exp1+1)*10), this.pos.x, this.pos.y + 40);
+					this.font.draw(renderer.getContext(), "Skill 2: Fast footing! Current Level:" + game.data.skill2 + "Cost:" + ((game.data.exp2+1)*10), this.pos.x, this.pos.y + 80);
+					this.font.draw(renderer.getContext(), "Skill 3: Increase Health. Current Level:" + game.data.skill3 + "Cost:" + ((game.data.exp3+1)*10), this.pos.x, this.pos.y + 120);
+					this.font.draw(renderer.getContext(), "Q Ability: Speed Burst. Current Level:" + game.data.ability1 + "Cost:" + ((game.data.exp4+1)*10), this.pos.x, this.pos.y + 160);
+					this.font.draw(renderer.getContext(), "W Ability: Eat your Creep for Health. Current Level:" + game.data.ability2 + "Cost:" + ((game.data.exp5+1)*10), this.pos.x, this.pos.y + 200);
+					this.font.draw(renderer.getContext(), "E Ability: Throw your Spear. Current Level:" + game.data.ability3 + "Cost:" + ((game.data.exp6+1)*10), this.pos.x, this.pos.y + 240);
 
 				}
 			}));
