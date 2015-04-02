@@ -63,13 +63,13 @@ var game = {
 		});
 	}
 
-	me.save.add({exp: 0, epx1: 0, exp2: 0, exp3: 0, exp4: 0});
+	
 	
 	me.state.SPENDEXP = 112;
 	me.state.LOAD = 113;
 	me.state.NEW = 114;
 
-	me.state.SPENDEXP = 112;	
+		
 	
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
