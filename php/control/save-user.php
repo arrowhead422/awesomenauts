@@ -3,7 +3,8 @@
 
 	$exp = filter_input(INPUT_POST, "exp", FILTER_SANITIZE_STRING);// all this input post are the exact the samething for any other exp user 
 	// but it does save players exp and gold
-	$exp1 = filter_input(INPUT_POST, "exp1", FILTER_SANITIZE_STRING);
+	$exp1 = filter_input(INPUT_POST, "exp1", FILTER_SANITIZE_STRING);// we using five varible that are passthroght from my game to this code and is going update the users table is going to set the varible to your varible accode
+	//if is true then it will echo out true
 	$exp2 = filter_input(INPUT_POST, "exp2", FILTER_SANITIZE_STRING);
 	$exp3 = filter_input(INPUT_POST, "exp3", FILTER_SANITIZE_STRING);
 	$exp4 = filter_input(INPUT_POST, "exp4", FILTER_SANITIZE_STRING);
