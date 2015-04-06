@@ -24,12 +24,12 @@
 		if($row["password"] === crypt ($password,  $row["salt"])) {
 			$_SESSION["authenticated"] = true;
 			array ['exp'] = $row ["exp"];
-			array ['exp'] = $row ["exp"];
-			array ['exp'] = $row ["exp"];
-			array ['exp'] = $row ["exp"];
-			
+			array ['exp'] = $row ["exp1"];
+			array ['exp'] = $row ["exp2"];
+			array ['exp'] = $row ["exp3"];
+			$_SESSION["name"] = $username;
 
-			echo "<p> Login Successful ! </p>";
+			echo java_ encode($array);// save the user
 		}
 
 		else {
