@@ -1,6 +1,6 @@
 <?php
 	//this path strage all the information to your localhost
- 	require_once(__DIR__ . "/Database.php");
+ 	require_once(__DIR__ . "/../model/Database.php");
  	session_start();// session variable are similar to reguer variable
  	session_regenerate_id(true); // this session id can prevented from hacker
 
