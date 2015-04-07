@@ -24,6 +24,7 @@ var game = {
 		GameTimerManager: "",
 		HeroDeathManager: "",
 		ExperienceManager: "",
+		spearTimer:15,
 		Player: "",
 		exp: 0,
 		gold: 0,
@@ -99,6 +100,7 @@ var game = {
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceManager", game.ExperienceManager);
 		me.pool.register("SpendGold", game.SpendGold);
+		me.pool.register("spear", game.SpearThrow);
 		
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		//menu and play repersented as number for my game
