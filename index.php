@@ -1,7 +1,7 @@
-
 <?php
 	require_once("php/control/create-db.php");
 ?>
+
 <html>
 	<head>
 		<title>melonJS Template</title>
@@ -144,7 +144,7 @@
 						game.data.exp3 = data["exp3"];
 						game.data.exp4 = data["exp4"];
 						me.state.change(me.state.SPENDEXP);
-	}
+				}
 
 			})
 

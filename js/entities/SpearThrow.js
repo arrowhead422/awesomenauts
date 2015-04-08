@@ -1,4 +1,4 @@
-game.SpearThrow = game.PlayerEntity = me.Entity.extend({
+game.SpearThrow = me.Entity.extend({
 	init: function(x, y, settings, facing){
 		this._super(me.Entity, 'init', [x, y, {
 			image: "spear",

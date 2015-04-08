@@ -56,7 +56,6 @@ game.PlayerEntity = me.Entity.extend({// game and me .Entity is a class
 		this.checkKeyPressesAndMove();
 		this.checkAbilityKeys();
 		this.setAnimation();
-
 		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 
