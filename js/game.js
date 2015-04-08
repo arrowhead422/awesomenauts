@@ -24,7 +24,7 @@ var game = {
 		GameTimerManager: "",
 		HeroDeathManager: "",
 		ExperienceManager: "",
-		spearTimer:15,
+		spearTimer: 15,
 		Player: "",
 		exp: 0,
 		gold: 0,
@@ -45,7 +45,7 @@ var game = {
 		buyscreen: "",
 		buytext: "",
 		Music: "",
-		Creep: "",
+		Creep: ""
 	},
 	
 	
