@@ -45,7 +45,8 @@ var game = {
 		buyscreen: "",
 		buytext: "",
 		Music: "",
-		Creep: ""
+		Creep: "",
+		minimap: ""
 	},
 	
 	

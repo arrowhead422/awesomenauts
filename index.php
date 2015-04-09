@@ -32,7 +32,7 @@
 
 			 <div class="password">
 			 	<label for="password">Password</label>
-			 	<input type="text" name="password" id="password">
+			 	<input type="password" name="password" id="password">
 			 </div>
 
 			 <button type="button" id="register">Register</button>
@@ -60,6 +60,7 @@
 		<script type="text/javascript" src="js/entities/EnemyBaseEntities.js"></script>
 		<script type="text/javascript" src="js/entities/HUD.js"></script>
 		<script type="text/javascript" src="js/entities/SpearThrow.js"></script>
+		<script type="text/javascript" src="js/entities/MiniMap.js"></script>
 		
 		<script type="text/javascript" src="js/screens/spendExp.js"></script>
 		<script type="text/javascript" src="js/screens/title.js"></script>
